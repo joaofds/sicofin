@@ -14,10 +14,25 @@ namespace Models
 
         public string password
         {
+            get => _password!;
             set
             {
                 this._password = value;
             }
+        }
+
+        /*
+        * Rotina para logar o usuario.
+        *
+        */
+        public bool isLogged(string email, string password)
+        {
+            if ((this.email == email) && (this.password == password))
+            {
+                this.logged = true;
+                return true;
+            }
+            return false;
         }
     }
 }

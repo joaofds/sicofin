@@ -10,7 +10,7 @@ public class Program
     static void Main()
     {
 
-        // Se usuario ainda não fez o cadastro.
+        // Se usuario ainda não fez o cadastro ou login.
         if (!usuario.logged)
         {
             Console.WriteLine("+---------------------------------------------------------------+");
@@ -26,7 +26,9 @@ public class Program
             if (option == "n")
             {
                 Console.Clear();
-                Console.WriteLine("Infelizmente não é possível acessar o sistema sem um cadastro.)");
+                Console.WriteLine("Infelizmente não é possível acessar o sistema sem um cadastro.");
+                Console.WriteLine("Pressione qualquer botão para sair...");
+                Console.ReadKey();
                 return;
             }
             else if (option == "s")
@@ -42,6 +44,7 @@ public class Program
             }
         }
 
+        // se usuario fez login entra aqui.
         if (usuario.logged)
         {
             while (menu > 0)
@@ -91,7 +94,38 @@ public class Program
         Console.WriteLine("Já estamos finalizando... Digite uma senha.");
         usuario.password = Console.ReadLine()!;
 
-        usuario.logged = true;
-        Main();
+        Console.Clear();
+        login();
+    }
+
+    /*
+    * Rotina para efetuar login no sistema.
+    *
+    */
+    static void login()
+    {
+        string email = "";
+        string senha = "";
+
+    Login:
+        Console.WriteLine("+---------------------------------------------------------------+");
+        Console.WriteLine("| Login                                                         |");
+        Console.WriteLine("+---------------------------------------------------------------+");
+
+        Console.WriteLine("Email:");
+        email = Console.ReadLine()!;
+
+        Console.WriteLine("Senha:");
+        senha = Console.ReadLine()!;
+        if (usuario.isLogged(email, senha))
+        {
+            Main();
+        }
+        else
+        {
+            Console.Clear();
+            Console.WriteLine("Email ou senha incorretos, tente novamente...");
+            goto Login;
+        }
     }
 }
