@@ -4,6 +4,8 @@ namespace Models
     {
         private string? _email;
         private string? _password;
+        public bool logged = false;
+
 
     }
 }
