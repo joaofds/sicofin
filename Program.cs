@@ -94,6 +94,10 @@ public class Program
         Console.WriteLine("Já estamos finalizando... Digite uma senha.");
         usuario.password = Console.ReadLine()!;
 
+        // armazena arquivo de senha de usuario (AQUI TEMOS SEGURANÇA ZERO kkkkkk)
+        // só fiz pra aprender manipular arquivos e diretorios.
+        FileStorage.createFolderAndFile("users", usuario.email!, ".dat", usuario.password);
+
         Console.Clear();
         login();
     }
