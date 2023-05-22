@@ -6,9 +6,12 @@ public class Program
 {
     static int menu = 1;
     static Usuario usuario = new Usuario();
+    static int selected;
 
     static void Main()
     {
+        // remover após os testes
+        usuario.logged = true;
 
         // Se usuario ainda não fez o cadastro ou login.
         if (!usuario.logged)
@@ -49,24 +52,38 @@ public class Program
         {
             while (menu > 0)
             {
-                Console.Clear();
-                Console.WriteLine($"Olá {usuario.nome}, Seja Bem Vindo!");
-                Console.WriteLine("");
-                Console.WriteLine("+---------------------------------------------------------------+");
-                Console.WriteLine("| Escolha uma opção no menu abaixo...                           |");
-                Console.WriteLine("+---------------------------------------------------------------+");
-                Console.WriteLine("| O que deseja fazer agora?                                     |");
-                Console.WriteLine("| Menu aqui                                                     |");
-                Console.WriteLine("+---------------------------------------------------------------+");
-
-                menu = int.Parse(Console.ReadLine()!);
-
-                if (menu == 1)
+                Helpers.MakeMenu(usuario.nome!, "Dashboard", "Escolha uma opção abaixo...");
+                selected = ConsoleHelper.MultipleChoice(true, "Finanças", "Cartões");
+                if (selected == 0)
                 {
-                    //
+                    Console.Clear();
+                    financas();
+
+                }
+
+                if (selected == 1)
+                {
+                    Console.Clear();
+                    cartoes();
                 }
             }
         }
+    }
+
+    static void financas()
+    {
+        Helpers.MakeMenu(usuario.nome!, "Finanças", "Gerenciamento de Finanças.");
+        selected = ConsoleHelper.MultipleChoice(true, "Cadastrar Receita", "Cadastrar Despesa");
+
+        Main();
+    }
+
+    static void cartoes()
+    {
+        Helpers.MakeMenu(usuario.nome!, "Cartões", "Gerenciamento de Cartões.");
+        selected = ConsoleHelper.MultipleChoice(true, "Cadastrar Cartão", "Deletar Cartão");
+
+        Main();
     }
 
     /*
@@ -94,8 +111,8 @@ public class Program
         Console.WriteLine("Já estamos finalizando... Digite uma senha.");
         usuario.password = Console.ReadLine()!;
 
-        // armazena arquivo de senha de usuario (AQUI TEMOS SEGURANÇA ZERO kkkkkk)
-        // só fiz pra aprender manipular arquivos e diretorios.
+        // armazena arquivo de senha de usuario (AQUI TEMOS SEGURANÇA ZERO kkkkkk).
+        // Só fiz pra aprender manipular arquivos e diretorios.
         FileStorage.createFolderAndFile("users", usuario.email!, ".dat", usuario.password);
 
         Console.Clear();
