@@ -6,6 +6,7 @@ namespace Models
         private string? _email;
         private string? _password;
         private List<Financa> _financas = new List<Financa>();
+        private List<CartaoCredito> _cartoes = new List<CartaoCredito>();
 
         public string? email
         {
@@ -26,6 +27,12 @@ namespace Models
         {
             get => this._financas;
             set => this._financas = value;
+        }
+
+        public List<CartaoCredito> cartoes
+        {
+            get => this._cartoes;
+            set => this._cartoes = value;
         }
 
         /*

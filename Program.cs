@@ -52,7 +52,7 @@ public class Program
         {
             while (menu > 0)
             {
-                Helpers.MakeMenu(usuario.nome!, "Dashboard", "Escolha uma opção abaixo...");
+                Helpers.MakeMenu(usuario.nome!, "Dashboard", "Escolha uma opção abaixo... Enter (Navegar) - Esc (Voltar)");
                 selected = ConsoleHelper.MultipleChoice(false, "Finanças", "Cartões");
 
                 // receitas/despesas.
@@ -76,11 +76,11 @@ public class Program
                 if (selected == 1)
                 {
                     Helpers.MakeMenu(usuario.nome!, "Cartões", "Gerenciamento de Cartões.");
-                    selected = ConsoleHelper.MultipleChoice(true, "Cadastrar Cartão", "Deletar Cartão", "Listar Cartões");
+                    selected = ConsoleHelper.MultipleChoice(true, "Cadastrar Cartão", "Listar Cartões");
                     switch (selected)
                     {
                         case 0:
-                            //novoCartao();
+                            novoCartao();
                             break;
                         case 1:
                             //removeCartao();
@@ -126,6 +126,10 @@ public class Program
         }
     }
 
+    /*
+    * Listagem com todas as receitas e despesas.
+    *
+    */
     static void listarEntradasFinanceiras()
     {
         Helpers.MakeMenu(usuario.nome!, "Finanças", "Minhas Receitas e Despesas.");
@@ -150,10 +154,50 @@ public class Program
         Console.ReadKey();
     }
 
+    /*
+    * Cadastro de cartão.
+    *
+    */
     static void novoCartao()
     {
-        Helpers.MakeMenu(usuario.nome!, "Finanças", "Cadastrar Cartão.");
-        Console.ReadLine();
+        Helpers.MakeMenu(usuario.nome!, "Cartões", "Cadastrar Cartão.");
+
+        Console.WriteLine("Titular: ");
+        string? titular = Console.ReadLine();
+
+        Console.WriteLine("Número: ");
+        string? numero = Console.ReadLine();
+
+        Console.WriteLine("Agência: ");
+        string? agencia = Console.ReadLine();
+        Console.WriteLine("Conta: ");
+        string? conta = Console.ReadLine();
+
+        Console.WriteLine("Código de Segurança: ");
+        string? codigo = Console.ReadLine();
+
+        // validação de data MM/yy
+        Console.WriteLine("Validade (ex: 01/26): ");
+        string? data = Console.ReadLine();
+        DateTime validade;
+        while (!DateTime.TryParseExact(data, "MM/yy", null, System.Globalization.DateTimeStyles.None, out validade))
+        {
+            Console.WriteLine("Data inválida... tente novamente.");
+            data = Console.ReadLine();
+        }
+
+        CartaoCredito cartao = new CartaoCredito(titular!, numero!, agencia!, conta!, codigo!, validade);
+        usuario.cartoes.Add(cartao);
+
+        Console.WriteLine("Sucesso!");
+        Console.WriteLine("Deseja Cadastrar outro cartão? s - (sim)");
+
+        var option = Console.ReadLine();
+        if (option == "s")
+        {
+            novoCartao();
+        }
+
     }
 
     /*
