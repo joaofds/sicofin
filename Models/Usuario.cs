@@ -2,9 +2,10 @@ namespace Models
 {
     public class Usuario : Pessoa
     {
+        public bool logged = false;
         private string? _email;
         private string? _password;
-        public bool logged = false;
+        private List<Financa> _financas = new List<Financa>();
 
         public string? email
         {
@@ -19,6 +20,12 @@ namespace Models
             {
                 this._password = value;
             }
+        }
+
+        public List<Financa> financas
+        {
+            get => this._financas;
+            set => this._financas = value;
         }
 
         /*

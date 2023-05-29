@@ -7,7 +7,7 @@ namespace Models
             {1, "Receita"},
             {2, "Despesa"}
         };
-        public static string getCategoria(int id)
+        public static string getCategoria(int? id)
         {
             var categoria = categorias.FirstOrDefault(item => item.Key == id);
             return categoria.Value;
