@@ -13,9 +13,6 @@ public class Program
         // habilita utf8
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        // remover após os testes
-        usuario.logged = true;
-
         // Se usuario ainda não fez o cadastro ou login.
         if (!usuario.logged)
         {

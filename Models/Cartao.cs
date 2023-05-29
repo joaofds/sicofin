@@ -1,6 +1,7 @@
+using Contratos;
 namespace Models
 {
-    public abstract class Cartao
+    public abstract class Cartao : ICartao
     {
         private string? _titular;
         private string? _bandeira;
