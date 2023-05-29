@@ -16,7 +16,7 @@ namespace Core
             string chars = string.Concat(Enumerable.Repeat(" ", totalChars));
 
             Console.Clear();
-            Console.WriteLine($"{menu} | Olá {usuario}, Seja Bem Vindo!");
+            Console.WriteLine($"{menu} | Olá{(usuario == "" ? "," : " " + usuario + ",")} Seja Bem Vindo!");
             Console.WriteLine("");
             Console.WriteLine("+---------------------------------------------------------------+");
             Console.WriteLine($"| {mensagem}{chars}|");

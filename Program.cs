@@ -17,7 +17,7 @@ public class Program
         if (!usuario.logged)
         {
             Console.WriteLine("+---------------------------------------------------------------+");
-            Console.WriteLine("| Seja Bem Vindo!                                               |");
+            Console.WriteLine("| SICOFIN - Seja Bem Vindo!                                     |");
         Begin:
             Console.WriteLine("+---------------------------------------------------------------+");
             Console.WriteLine("| Para acessar o sistema você precisa se cadastrar antes.       |");
@@ -52,7 +52,7 @@ public class Program
         {
             while (menu > 0)
             {
-                Helpers.MakeMenu(usuario.nome!, "Dashboard", "Escolha uma opção abaixo... Enter (Navegar) - Esc (Voltar)");
+                Helpers.MakeMenu(usuario.nome!, "Dashboard", "Escolha uma opção abaixo... Enter (Navegar), Esc (Voltar) ");
                 selected = ConsoleHelper.MultipleChoice(false, "Finanças", "Cartões");
 
                 // receitas/despesas.
@@ -234,9 +234,7 @@ public class Program
     */
     static void novoUsuario()
     {
-        Console.Clear();
-        Console.WriteLine("Cadastro de usuário...");
-
+        Console.WriteLine("");
         Console.WriteLine("Ótimo, primeiro queremos saber qual seu primeiro nome.");
         usuario.nome = Helpers.SanitizeString(Console.ReadLine()!);
 
@@ -271,9 +269,12 @@ public class Program
 
     Login:
         Console.WriteLine("+---------------------------------------------------------------+");
-        Console.WriteLine("| Login                                                         |");
+        Console.WriteLine("| SICOFIN - Seja Bem Vindo!                                     |");
+        Console.WriteLine("+---------------------------------------------------------------+");
+        Console.WriteLine("| Login - Insira seus dados de acesso.                          |");
         Console.WriteLine("+---------------------------------------------------------------+");
 
+        Console.WriteLine("");
         Console.WriteLine("Email:");
         email = Console.ReadLine()!;
 
