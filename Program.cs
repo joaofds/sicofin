@@ -10,6 +10,9 @@ public class Program
 
     static void Main()
     {
+        // habilita utf8
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+
         // remover após os testes
         usuario.logged = true;
 
@@ -83,7 +86,7 @@ public class Program
                             novoCartao();
                             break;
                         case 1:
-                            //removeCartao();
+                            listarCartoes();
                             break;
                     }
                 }
@@ -197,7 +200,35 @@ public class Program
         {
             novoCartao();
         }
+    }
 
+    /*
+    * Listagem dos cartões cadastrados.
+    *
+    */
+    static void listarCartoes()
+    {
+        Helpers.MakeMenu(usuario.nome!, "Cartões", "Meus Cartões.");
+        if (usuario.cartoes.Count == 0)
+        {
+            Console.WriteLine("Você ainda não cadastrou um cartão...");
+        }
+        else
+        {
+            var autoIncrement = 1;
+            foreach (var cartao in usuario.cartoes)
+            {
+                Console.WriteLine($"# - {autoIncrement++}");
+                Console.WriteLine($"Titular: {cartao.titular}");
+                Console.WriteLine($"Número: {cartao.numero}");
+                Console.WriteLine($"Agência: {cartao.agencia}");
+                Console.WriteLine($"Conta: {cartao.conta}");
+                Console.WriteLine($"Validade: {cartao.validade}");
+                Console.WriteLine("______________________________________________________");
+                Console.WriteLine("");
+            }
+        }
+        Console.ReadKey();
     }
 
     /*
