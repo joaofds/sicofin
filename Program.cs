@@ -67,7 +67,7 @@ public class Program
                             novaEntradaFinanceira(selected);
                             break;
                         case 2:
-                            // listar finaças;
+                            listarEntradasFinanceiras();
                             break;
                     }
                 }
@@ -111,7 +111,8 @@ public class Program
             goto Valor;
         }
 
-        Financa entradaFin = new Financa(1, descricao, valor);
+        DateTime dataHora = DateTime.Now;
+        Financa entradaFin = new Financa(opt == 0 ? 1 : 2, descricao, valor, dataHora);
         usuario.financas.Add(entradaFin);
 
         Console.Clear();
@@ -123,6 +124,30 @@ public class Program
         {
             novaEntradaFinanceira(opt == 0 ? 0 : 1);
         }
+    }
+
+    static void listarEntradasFinanceiras()
+    {
+        Helpers.MakeMenu(usuario.nome!, "Finanças", "Minhas Receitas e Despesas.");
+        if (usuario.financas.Count == 0)
+        {
+            Console.WriteLine("Você ainda não possui nenhum lançamento...");
+        }
+        else
+        {
+            var autoIncrement = 1;
+            foreach (var financas in usuario.financas)
+            {
+                Console.WriteLine($"# - {autoIncrement++}");
+                Console.WriteLine($"Tipo: {Categorias.getCategoria(financas.tipo)}");
+                Console.WriteLine($"Descrição: {financas.descricao}");
+                Console.WriteLine($"R$: {financas.valor}");
+                Console.WriteLine($"Data do lançamento: {financas.data}");
+                Console.WriteLine("______________________________________________________");
+                Console.WriteLine("");
+            }
+        }
+        Console.ReadKey();
     }
 
     static void novoCartao()

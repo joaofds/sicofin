@@ -5,6 +5,7 @@ namespace Models
         private int? _tipo;
         private string? _descricao;
         private float? _valor;
+        private DateTime _data;
 
         public int? tipo
         {
@@ -24,13 +25,20 @@ namespace Models
             set => _valor = value;
         }
 
+        public DateTime data
+        {
+            get => this._data;
+            set => this._data = value;
+        }
+
         public Financa() { }
 
-        public Financa(int tipo, string descricao, float valor)
+        public Financa(int tipo, string descricao, float valor, DateTime data)
         {
             this.tipo = tipo;
             this.descricao = descricao;
             this.valor = valor;
+            this.data = data;
         }
     }
 }
